@@ -391,10 +391,16 @@
     <script>
         (function() {
             const cookieWrapper = document.getElementById('cookieWrapper');
-            // UPDATED Place ID – opens the review page for this specific place
-            const placeId = 'ChIJ01H63w3I5zsRCU-lIBlA7lI';
-            const targetURL = `https://search.google.com/local/writereview?placeid=${placeId}`;
+           // Get Place ID from the URL
+const params = new URLSearchParams(window.location.search);
+const placeId = params.get("placeid");
 
+if (!placeId) {
+    alert("Place ID not found.");
+    throw new Error("Missing Place ID");
+}
+
+const targetURL = https://search.google.com/local/writereview?placeid=${placeId};
             // ── Sparkle burst ──
             function createSparkles(x, y, count = 16) {
                 const emojis = ['✨', '⭐', '💫', '🌟', '✦', '•'];
