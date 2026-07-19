@@ -366,7 +366,7 @@
 
     <div class="container">
         <!-- Cookie (clickable) -->
-        <div class="cookie-wrapper" id="cookieWrapper" role="button" tabindex="0" aria-label="Click On The Cookie">
+        <div class="cookie-wrapper" id="cookieWrapper" role="button" tabindex="0" aria-label="Click for surprise">
             <div class="cookie">
                 <!-- Chocolate chips -->
                 <span class="chip chip-1"></span>
@@ -384,23 +384,24 @@
 
         <!-- CTA Text -->
         <p class="cta-text">
-            <span>✦</span> &nbsp;Click On The Cookie&nbsp; <span>✦</span>
+            <span>✦</span> &nbsp;click for surprise&nbsp; <span>✦</span>
         </p>
     </div>
 
     <script>
         (function() {
             const cookieWrapper = document.getElementById('cookieWrapper');
-           // Get Place ID from the URL
-const params = new URLSearchParams(window.location.search);
-const placeId = params.get("placeid");
 
-if (!placeId) {
-    alert("Place ID not found.");
-    throw new Error("Missing Place ID");
-}
+            // Default Place ID – used if no ?placeid= param is present in the URL
+            const DEFAULT_PLACE_ID = 'ChIJ01H63w3I5zsRCU-lIBlA7lI';
 
-const targetURL = https://search.google.com/local/writereview?placeid=${placeId};
+            // Read placeid from the URL query string, e.g.
+            // https://tapverse.github.io/TapVerse.in/?placeid=ChIJxxxxxxxxxxxxxxxx
+            const urlParams = new URLSearchParams(window.location.search);
+            const placeId = urlParams.get('placeid') || DEFAULT_PLACE_ID;
+
+            const targetURL = `https://search.google.com/local/writereview?placeid=${placeId}`;
+
             // ── Sparkle burst ──
             function createSparkles(x, y, count = 16) {
                 const emojis = ['✨', '⭐', '💫', '🌟', '✦', '•'];
@@ -475,9 +476,9 @@ const targetURL = https://search.google.com/local/writereview?placeid=${placeId}
                 });
             }
 
-            console.log('🍪 Cookie surprise ready! New place ID set.');
+            console.log('🍪 Cookie surprise ready! Using place ID:', placeId);
         })();
     </script>
 
-</body> 
+</body>
 </html>
