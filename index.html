@@ -391,15 +391,8 @@
     <script>
         (function() {
             const cookieWrapper = document.getElementById('cookieWrapper');
-
-            // Default Place ID – used if no ?placeid= param is present in the URL
-            const DEFAULT_PLACE_ID = 'ChIJ01H63w3I5zsRCU-lIBlA7lI';
-
-            // Read placeid from the URL query string, e.g.
-            // https://tapverse.github.io/TapVerse.in/?placeid=ChIJxxxxxxxxxxxxxxxx
-            const urlParams = new URLSearchParams(window.location.search);
-            const placeId = urlParams.get('placeid') || DEFAULT_PLACE_ID;
-
+            // UPDATED Place ID – opens the review page for this specific place
+            const placeId = 'ChIJ01H63w3I5zsRCU-lIBlA7lI';
             const targetURL = `https://search.google.com/local/writereview?placeid=${placeId}`;
 
             // ── Sparkle burst ──
@@ -476,7 +469,7 @@
                 });
             }
 
-            console.log('🍪 Cookie surprise ready! Using place ID:', placeId);
+            console.log('🍪 Cookie surprise ready! New place ID set.');
         })();
     </script>
 
