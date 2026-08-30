@@ -12,24 +12,16 @@
             box-sizing: border-box;
         } 
 
-      body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-        url("indriya-bg.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    user-select: none;
-    overflow: hidden;
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at center, #2d1b0e 0%, #1a0f08 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+            overflow: hidden;
+        }
 
         /* ── Container ── */
         .container {
@@ -232,27 +224,163 @@
             animation: pulse-text 2.4s ease-in-out infinite;
         }
 
-      .indriya-logo {
-    width: 220px;
-    height: 220px;
-    object-fit: contain;
+        /* ── Tiny sparkle particles (decorative) ── */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.2rem;
+            opacity: 0;
+            z-index: 10;
+            animation: sparkle-fly 1.2s ease-out forwards;
+        }
 
-    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.6));
+        /* ── Animations ── */
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-    pointer-events: none;
-}
+        @keyframes pulse-text {
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.04);
+            }
+        }
+
+        @keyframes sparkle-fly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.5) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(360deg);
+            }
+        }
+
+        /* ── Click "bounce" animation ── */
+        .cookie-wrapper.bounce {
+            animation: bounce-cookie 0.4s ease !important;
+        }
+
+        @keyframes bounce-cookie {
+            0% {
+                transform: scale(1);
+            }
+            30% {
+                transform: scale(0.85) rotate(-8deg);
+            }
+            60% {
+                transform: scale(1.1) rotate(4deg);
+            }
+            80% {
+                transform: scale(0.95) rotate(-2deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 500px) {
+            .cookie-wrapper {
+                width: 160px;
+                height: 160px;
+            }
+            .cookie {
+                width: 150px;
+                height: 150px;
+            }
+            .chip-1 {
+                width: 16px;
+                height: 20px;
+            }
+            .chip-2 {
+                width: 14px;
+                height: 16px;
+            }
+            .chip-3 {
+                width: 20px;
+                height: 18px;
+            }
+            .chip-4 {
+                width: 16px;
+                height: 18px;
+            }
+            .chip-5 {
+                width: 20px;
+                height: 22px;
+            }
+            .chip-6 {
+                width: 12px;
+                height: 14px;
+            }
+            .chip-7 {
+                width: 12px;
+                height: 14px;
+            }
+            .chip-8 {
+                width: 16px;
+                height: 14px;
+            }
+            .chip-9 {
+                width: 10px;
+                height: 12px;
+            }
+            .chip-10 {
+                width: 14px;
+                height: 12px;
+            }
+            .cta-text {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .cookie-wrapper {
+                width: 130px;
+                height: 130px;
+            }
+            .cookie {
+                width: 120px;
+                height: 120px;
+            }
+            .cta-text {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="container">
         <!-- Cookie (clickable) -->
-       <div class="cookie-wrapper"
-     id="cookieWrapper"
-     role="button"
-     tabindex="0"
-     aria-label="Tap On The Indriya Logo">
-
-    <img src="indriya-logo.png"
-         class="indriya-logo"
-         alt="Indriya Logo">
-
-</div>
+        <div class="cookie-wrapper" id="cookieWrapper" role="button" tabindex="0" aria-label="Tap On The Cookie">
+            <div class="cookie">
+                <!-- Chocolate chips -->
+                <span class="chip chip-1"></span>
+                <span class="chip chip-2"></span>
+                <span class="chip chip-3"></span>
+                <span class="chip chip-4"></span>
+                <span class="chip chip-5"></span>
+                <span class="chip chip-6"></span>
+                <span class="chip chip-7"></span>
+                <span class="chip chip-8"></span>
+                <span class="chip chip-9"></span>
+                <span class="chip chip-10"></span>
+            </div>
+        </div>
 
         <!-- CTA Text -->
         <p class="cta-text">
